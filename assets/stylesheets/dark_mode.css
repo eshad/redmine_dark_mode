@@ -745,8 +745,8 @@ html.dark-mode .version-overview {
   color: var(--dm-text-primary) !important;
 }
 
-/* SVG icons */
-html.dark-mode svg {
+/* SVG icons - but not in toolbar buttons */
+html.dark-mode svg:not(.jstElements svg) {
   stroke: var(--dm-text-primary) !important;
 }
 
@@ -756,6 +756,11 @@ html.dark-mode a svg {
 
 html.dark-mode a:hover svg {
   stroke: var(--dm-link-hover) !important;
+}
+
+/* Keep toolbar button SVGs with original dark strokes */
+html.dark-mode .jstElements button svg {
+  stroke: #333 !important;
 }
 
 /* Attributes section on issues */
@@ -985,23 +990,49 @@ html.dark-mode .jstElements {
   padding: 4px !important;
 }
 
-/* Toolbar buttons - light background so icons are visible */
+/* Toolbar buttons - keep light so SVG icons are visible */
 html.dark-mode .jstElements button {
-  background-color: #e0e0e0 !important;
+  background-color: #f7f7f7 !important;
   border: 1px solid #ccc !important;
   border-radius: 3px !important;
-  margin: 1px 2px !important;
-  padding: 2px 4px !important;
+  filter: none !important;
+  opacity: 0.9 !important;
 }
 
 html.dark-mode .jstElements button:hover {
   background-color: #fff !important;
-  border-color: var(--dm-accent) !important;
+  border-color: #999 !important;
+  opacity: 1 !important;
 }
 
-/* Toolbar button text labels */
-html.dark-mode .jstElements button span {
+/* Pre button text */
+html.dark-mode .jstb_pre::before {
   color: #333 !important;
+}
+
+/* Ensure toolbar button SVG background images display properly */
+html.dark-mode .jstb_strong,
+html.dark-mode .jstb_em,
+html.dark-mode .jstb_ins,
+html.dark-mode .jstb_del,
+html.dark-mode .jstb_code,
+html.dark-mode .jstb_h1,
+html.dark-mode .jstb_h2,
+html.dark-mode .jstb_h3,
+html.dark-mode .jstb_ul,
+html.dark-mode .jstb_ol,
+html.dark-mode .jstb_tl,
+html.dark-mode .jstb_bq,
+html.dark-mode .jstb_unbq,
+html.dark-mode .jstb_pre,
+html.dark-mode .jstb_precode,
+html.dark-mode .jstb_link,
+html.dark-mode .jstb_img,
+html.dark-mode .jstb_table,
+html.dark-mode .jstb_help {
+  background-color: #f7f7f7 !important;
+  background-position: 50% 50% !important;
+  background-repeat: no-repeat !important;
 }
 
 /* Tabs in editor (Edit/Preview) */
