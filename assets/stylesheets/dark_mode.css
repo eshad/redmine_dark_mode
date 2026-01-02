@@ -985,47 +985,23 @@ html.dark-mode .jstElements {
   padding: 4px !important;
 }
 
+/* Toolbar buttons - light background so icons are visible */
 html.dark-mode .jstElements button {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
+  background-color: #e0e0e0 !important;
+  border: 1px solid #ccc !important;
   border-radius: 3px !important;
-  margin: 1px !important;
-  opacity: 0.85 !important;
+  margin: 1px 2px !important;
+  padding: 2px 4px !important;
 }
 
 html.dark-mode .jstElements button:hover {
-  background-color: var(--dm-bg-hover) !important;
-  border-color: var(--dm-border) !important;
-  opacity: 1 !important;
+  background-color: #fff !important;
+  border-color: var(--dm-accent) !important;
 }
 
-/* Make toolbar button images/icons visible with filter */
-html.dark-mode .jstElements button {
-  filter: invert(1) brightness(1.5) !important;
-}
-
-html.dark-mode .jstElements button:hover {
-  filter: invert(1) brightness(2) !important;
-}
-
-/* Alternative: if buttons use background images */
-html.dark-mode .jstb_strong,
-html.dark-mode .jstb_em,
-html.dark-mode .jstb_ins,
-html.dark-mode .jstb_del,
-html.dark-mode .jstb_code,
-html.dark-mode .jstb_heading1,
-html.dark-mode .jstb_heading2,
-html.dark-mode .jstb_heading3,
-html.dark-mode .jstb_ul,
-html.dark-mode .jstb_ol,
-html.dark-mode .jstb_bq,
-html.dark-mode .jstb_unbq,
-html.dark-mode .jstb_pre,
-html.dark-mode .jstb_link,
-html.dark-mode .jstb_img,
-html.dark-mode .jstb_help {
-  filter: invert(1) brightness(1.5) !important;
+/* Toolbar button text labels */
+html.dark-mode .jstElements button span {
+  color: #333 !important;
 }
 
 /* Tabs in editor (Edit/Preview) */
