@@ -990,52 +990,24 @@ html.dark-mode .jstElements {
   padding: 4px !important;
 }
 
-/* Toolbar buttons - keep light so SVG icons are visible */
-/* SVGs use stroke="currentColor" so we must set color to dark */
+/* Toolbar buttons - dark background with inverted icons */
 html.dark-mode .jstElements button {
-  background-color: #f7f7f7 !important;
-  border: 1px solid #ccc !important;
+  background-color: var(--dm-bg-hover) !important;
+  border: 1px solid var(--dm-border) !important;
   border-radius: 3px !important;
-  filter: none !important;
   opacity: 0.9 !important;
-  color: #333 !important;  /* This makes currentColor dark for SVG icons */
+  filter: invert(1) hue-rotate(180deg) !important;
 }
 
 html.dark-mode .jstElements button:hover {
-  background-color: #fff !important;
-  border-color: #999 !important;
+  background-color: var(--dm-bg-tertiary) !important;
+  border-color: var(--dm-accent) !important;
   opacity: 1 !important;
-  color: #000 !important;
 }
 
-/* Pre button text */
+/* Pre button text - needs to stay readable after filter */
 html.dark-mode .jstb_pre::before {
   color: #333 !important;
-}
-
-/* Ensure toolbar button SVG background images display properly */
-html.dark-mode .jstb_strong,
-html.dark-mode .jstb_em,
-html.dark-mode .jstb_ins,
-html.dark-mode .jstb_del,
-html.dark-mode .jstb_code,
-html.dark-mode .jstb_h1,
-html.dark-mode .jstb_h2,
-html.dark-mode .jstb_h3,
-html.dark-mode .jstb_ul,
-html.dark-mode .jstb_ol,
-html.dark-mode .jstb_tl,
-html.dark-mode .jstb_bq,
-html.dark-mode .jstb_unbq,
-html.dark-mode .jstb_pre,
-html.dark-mode .jstb_precode,
-html.dark-mode .jstb_link,
-html.dark-mode .jstb_img,
-html.dark-mode .jstb_table,
-html.dark-mode .jstb_help {
-  background-color: #f7f7f7 !important;
-  background-position: 50% 50% !important;
-  background-repeat: no-repeat !important;
 }
 
 /* Tabs in editor (Edit/Preview) */
