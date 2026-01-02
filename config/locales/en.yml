@@ -1,0 +1,5 @@
+en:
+  dark_mode:
+    toggle: "Toggle Dark Mode"
+    light: "Light Mode"
+    dark: "Dark Mode"
