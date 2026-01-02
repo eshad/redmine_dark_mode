@@ -970,3 +970,204 @@ html.dark-mode td,
 html.dark-mode th {
   color: inherit;
 }
+
+/* ============================================
+   TEXT EDITOR TOOLBAR (jstoolbar) - FIXED
+   ============================================ */
+html.dark-mode .jstEditor {
+  background-color: var(--dm-bg-secondary) !important;
+  border: 1px solid var(--dm-border) !important;
+}
+
+html.dark-mode .jstElements {
+  background-color: var(--dm-bg-tertiary) !important;
+  border-bottom: 1px solid var(--dm-border) !important;
+  padding: 4px !important;
+}
+
+html.dark-mode .jstElements button {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 3px !important;
+  margin: 1px !important;
+  opacity: 0.85 !important;
+}
+
+html.dark-mode .jstElements button:hover {
+  background-color: var(--dm-bg-hover) !important;
+  border-color: var(--dm-border) !important;
+  opacity: 1 !important;
+}
+
+/* Make toolbar button images/icons visible with filter */
+html.dark-mode .jstElements button {
+  filter: invert(1) brightness(1.5) !important;
+}
+
+html.dark-mode .jstElements button:hover {
+  filter: invert(1) brightness(2) !important;
+}
+
+/* Alternative: if buttons use background images */
+html.dark-mode .jstb_strong,
+html.dark-mode .jstb_em,
+html.dark-mode .jstb_ins,
+html.dark-mode .jstb_del,
+html.dark-mode .jstb_code,
+html.dark-mode .jstb_heading1,
+html.dark-mode .jstb_heading2,
+html.dark-mode .jstb_heading3,
+html.dark-mode .jstb_ul,
+html.dark-mode .jstb_ol,
+html.dark-mode .jstb_bq,
+html.dark-mode .jstb_unbq,
+html.dark-mode .jstb_pre,
+html.dark-mode .jstb_link,
+html.dark-mode .jstb_img,
+html.dark-mode .jstb_help {
+  filter: invert(1) brightness(1.5) !important;
+}
+
+/* Tabs in editor (Edit/Preview) */
+html.dark-mode .tabs-buttons {
+  background-color: var(--dm-bg-secondary) !important;
+}
+
+html.dark-mode ul.tabs {
+  background-color: transparent !important;
+}
+
+html.dark-mode ul.tabs li a {
+  background-color: var(--dm-bg-secondary) !important;
+  border: 1px solid var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode ul.tabs li a:hover {
+  background-color: var(--dm-bg-hover) !important;
+}
+
+html.dark-mode ul.tabs li a.selected {
+  background-color: var(--dm-bg-primary) !important;
+  border-bottom-color: var(--dm-bg-primary) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+/* ============================================
+   CALENDAR - FIXED
+   ============================================ */
+html.dark-mode table.cal {
+  border: 1px solid var(--dm-border) !important;
+  background-color: var(--dm-bg-primary) !important;
+}
+
+html.dark-mode table.cal thead th {
+  background-color: var(--dm-table-header) !important;
+  color: var(--dm-text-primary) !important;
+  border: 1px solid var(--dm-border) !important;
+  padding: 8px !important;
+}
+
+html.dark-mode table.cal tbody td {
+  background-color: var(--dm-bg-primary) !important;
+  border: 1px solid var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+  vertical-align: top !important;
+}
+
+html.dark-mode table.cal tbody td.odd {
+  background-color: var(--dm-bg-secondary) !important;
+}
+
+html.dark-mode table.cal tbody td.today {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+}
+
+html.dark-mode table.cal tbody td.nwday {
+  background-color: var(--dm-bg-card) !important;
+}
+
+/* Calendar day numbers */
+html.dark-mode table.cal td p.day-num {
+  color: var(--dm-text-primary) !important;
+  font-weight: bold !important;
+}
+
+html.dark-mode table.cal td.odd p.day-num {
+  color: var(--dm-text-secondary) !important;
+}
+
+/* Calendar week numbers */
+html.dark-mode table.cal td.week-number {
+  background-color: var(--dm-bg-secondary) !important;
+  color: var(--dm-text-muted) !important;
+}
+
+/* Calendar issue links */
+html.dark-mode table.cal a.issue {
+  color: var(--dm-link) !important;
+}
+
+html.dark-mode table.cal span.icon {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Calendar navigation */
+html.dark-mode .calendar-nav {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Small calendar / datepicker in sidebar */
+html.dark-mode table.cal.mini th,
+html.dark-mode table.cal.mini td {
+  color: var(--dm-text-primary) !important;
+}
+
+/* ============================================
+   FIELDSET AND LEGEND - IMPROVED
+   ============================================ */
+html.dark-mode fieldset {
+  background-color: var(--dm-bg-card) !important;
+  border: 1px solid var(--dm-border) !important;
+}
+
+html.dark-mode fieldset.collapsible legend {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode fieldset.collapsible legend:hover {
+  color: var(--dm-link) !important;
+}
+
+/* ============================================
+   ISSUE FORM SPECIFIC FIXES
+   ============================================ */
+html.dark-mode #issue-form .box {
+  background-color: var(--dm-bg-card) !important;
+}
+
+html.dark-mode #issue-form p {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode #issue-form label {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .splitcontent {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Watchers checkboxes list */
+html.dark-mode #watchers_form label {
+  color: var(--dm-text-primary) !important;
+}
+
+/* File upload area */
+html.dark-mode .attachments_form {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode span.add_attachment {
+  color: var(--dm-text-primary) !important;
+}
