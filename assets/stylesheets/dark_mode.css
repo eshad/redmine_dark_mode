@@ -297,12 +297,13 @@ html.dark-mode select option {
   color: var(--dm-text-primary) !important;
 }
 
-/* Buttons */
+/* Buttons — use background-color only (not shorthand) to avoid
+   resetting background-repeat/position on toolbar icon buttons */
 html.dark-mode input[type="submit"],
 html.dark-mode input[type="button"],
 html.dark-mode button,
 html.dark-mode .button {
-  background: var(--dm-bg-tertiary) !important;
+  background-color: var(--dm-bg-tertiary) !important;
   color: var(--dm-text-primary) !important;
   border: 1px solid var(--dm-border) !important;
 }
@@ -378,6 +379,14 @@ html.dark-mode #login-form label {
 html.dark-mode div.modal {
   background: var(--dm-bg-card) !important;
   color: var(--dm-text-primary) !important;
+}
+
+/* No data / warning messages */
+html.dark-mode .nodata,
+html.dark-mode .warning {
+  background-color: rgba(251, 191, 36, 0.1) !important;
+  border-color: var(--dm-warning) !important;
+  color: var(--dm-warning) !important;
 }
 
 /* Flash messages */
@@ -475,6 +484,40 @@ html.dark-mode .issue {
   color: var(--dm-text-primary) !important;
 }
 
+/* Fix yellow (#ffffdd) background on issue detail box */
+html.dark-mode div.issue {
+  background: var(--dm-bg-card) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+/* All text inside the issue box */
+html.dark-mode div.issue h3,
+html.dark-mode div.issue h4,
+html.dark-mode div.issue p,
+html.dark-mode div.issue span,
+html.dark-mode div.issue td,
+html.dark-mode div.issue th,
+html.dark-mode div.issue label,
+html.dark-mode div.issue strong {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Section headers inside issue (Description, Subtasks, Related issues) */
+html.dark-mode div.issue .contextual,
+html.dark-mode #issue-changesets h4,
+html.dark-mode .issue > h3,
+html.dark-mode #issue-changesets,
+html.dark-mode .related-issues h3,
+html.dark-mode .subtasks h3 {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Horizontal rules inside issue box */
+html.dark-mode div.issue hr {
+  border-color: var(--dm-border) !important;
+}
+
 html.dark-mode .issue .attributes,
 html.dark-mode .issue .attribute {
   color: var(--dm-text-primary) !important;
@@ -484,8 +527,46 @@ html.dark-mode div.issue div.subject h3 {
   color: var(--dm-text-primary) !important;
 }
 
+html.dark-mode div.issue div.subject p {
+  color: var(--dm-text-muted) !important;
+}
+
+html.dark-mode div.issue p.author {
+  color: var(--dm-text-muted) !important;
+}
+
 html.dark-mode .issue .next-prev-links a {
   color: var(--dm-link) !important;
+}
+
+/* Fix overdue date color on issue list */
+html.dark-mode table.list tr.overdue td.due_date {
+  color: var(--dm-error) !important;
+}
+
+/* Fix issue row hover (#ffffdd bleeds through)
+   Use > td (direct child only) so nested table.progress cells are NOT affected */
+html.dark-mode table.list tbody tr:hover > td,
+html.dark-mode .odd:hover,
+html.dark-mode .even:hover {
+  background-color: var(--dm-table-row-hover) !important;
+}
+
+/* Ensure progress bar cells keep their colors on row hover */
+html.dark-mode table.list tbody tr:hover table.progress {
+  background-color: var(--dm-bg-secondary) !important;
+}
+
+html.dark-mode table.list tbody tr:hover table.progress td.closed {
+  background-color: var(--dm-success) !important;
+}
+
+html.dark-mode table.list tbody tr:hover table.progress td.done {
+  background-color: var(--dm-accent) !important;
+}
+
+html.dark-mode table.list tbody tr:hover table.progress td.todo {
+  background-color: var(--dm-border) !important;
 }
 
 html.dark-mode tr.issue td.checkbox + td.id + td a {
@@ -556,22 +637,50 @@ html.dark-mode #context-menu {
   border-color: var(--dm-border) !important;
 }
 
+html.dark-mode #context-menu ul {
+  background-color: var(--dm-bg-card) !important;
+  border-color: var(--dm-border) !important;
+}
+
 html.dark-mode #context-menu li {
+  color: var(--dm-text-primary) !important;
+  border-color: var(--dm-bg-card) !important;
+}
+
+html.dark-mode #context-menu li a,
+html.dark-mode #context-menu li a.disabled {
   color: var(--dm-text-primary) !important;
 }
 
-html.dark-mode #context-menu li a {
-  color: var(--dm-text-primary) !important;
+html.dark-mode #context-menu li:hover {
+  border-color: var(--dm-border) !important;
+  background-color: var(--dm-bg-hover) !important;
 }
 
 html.dark-mode #context-menu li a:hover {
-  background-color: var(--dm-menu-active) !important;
-  color: #fff !important;
+  background-color: transparent !important;
+  color: var(--dm-link-hover) !important;
 }
 
 html.dark-mode #context-menu li.folder ul {
   background-color: var(--dm-bg-card) !important;
   border-color: var(--dm-border) !important;
+}
+
+/* Selected rows (context-menu-selection) — needs higher specificity than .odd/.even */
+html.dark-mode table.list tr.context-menu-selection,
+html.dark-mode table.list tr.context-menu-selection.odd,
+html.dark-mode table.list tr.context-menu-selection.even {
+  background-color: #2a5080 !important;
+}
+
+html.dark-mode table.list tr.context-menu-selection > td {
+  background-color: #2a5080 !important;
+  color: #f8f8f8 !important;
+}
+
+html.dark-mode table.list tr.context-menu-selection a {
+  color: #93c5fd !important;
 }
 
 /* Pagination */
@@ -599,6 +708,17 @@ html.dark-mode table.progress td.closed {
 
 html.dark-mode table.progress td.done {
   background-color: var(--dm-accent) !important;
+}
+
+html.dark-mode table.progress td.todo {
+  background-color: var(--dm-border) !important;
+}
+
+/* Keep td.todo visible when hovering the progress bar or the row */
+html.dark-mode table.list tbody tr:hover table.progress td.todo,
+html.dark-mode table.progress:hover td.todo,
+html.dark-mode table.progress td.todo:hover {
+  background-color: var(--dm-border) !important;
 }
 
 /* Tooltips */
@@ -745,8 +865,13 @@ html.dark-mode .version-overview {
   color: var(--dm-text-primary) !important;
 }
 
-/* SVG icons - but not in toolbar buttons */
-html.dark-mode svg:not(.jstElements svg) {
+/* SVG icons inline (not background-image, not toolbar) */
+html.dark-mode #top-menu svg,
+html.dark-mode #header svg,
+html.dark-mode #main-menu svg,
+html.dark-mode #sidebar svg,
+html.dark-mode #content svg,
+html.dark-mode #footer svg {
   stroke: var(--dm-text-primary) !important;
 }
 
@@ -756,11 +881,6 @@ html.dark-mode a svg {
 
 html.dark-mode a:hover svg {
   stroke: var(--dm-link-hover) !important;
-}
-
-/* Keep toolbar button SVGs with original dark strokes */
-html.dark-mode .jstElements button svg {
-  stroke: #333 !important;
 }
 
 /* Attributes section on issues */
@@ -808,6 +928,33 @@ html.dark-mode .status-closed {
   color: var(--dm-success) !important;
 }
 
+/* Badge status colors — override hardcoded light-theme colors */
+html.dark-mode .badge-status-open {
+  color: #60a5fa !important;
+  border-color: #60a5fa !important;
+}
+
+html.dark-mode .badge-status-locked {
+  color: var(--dm-text-muted) !important;
+  border-color: var(--dm-text-muted) !important;
+}
+
+html.dark-mode .badge-status-closed {
+  color: var(--dm-success) !important;
+  border-color: var(--dm-success) !important;
+}
+
+html.dark-mode .badge-private {
+  background: var(--dm-error) !important;
+  border-color: var(--dm-error) !important;
+  color: #fff !important;
+}
+
+html.dark-mode .badge-issues-count {
+  background: var(--dm-bg-hover) !important;
+  color: var(--dm-text-primary) !important;
+}
+
 /* Tracker colors - make them visible */
 html.dark-mode span.icon-issue {
   color: var(--dm-text-primary) !important;
@@ -829,6 +976,11 @@ html.dark-mode .news h3 {
 }
 
 /* Activity list */
+html.dark-mode div#activity h3 {
+  background-color: var(--dm-bg-secondary) !important;
+  color: var(--dm-text-primary) !important;
+}
+
 html.dark-mode #activity dt,
 html.dark-mode .activity dt {
   color: var(--dm-text-secondary) !important;
@@ -882,6 +1034,119 @@ html.dark-mode .tip {
   background-color: var(--dm-bg-card) !important;
   border-color: var(--dm-border) !important;
   color: var(--dm-text-primary) !important;
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING — dark mode overrides
+   Replaces light-theme hardcoded colors in wiki_syntax_detailed.css
+   ============================================ */
+
+/* Pre/code blocks */
+html.dark-mode .syntaxhl {
+  background-color: var(--dm-bg-secondary) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+/* Remove light backgrounds from string tokens — they cause white boxes */
+html.dark-mode .syntaxhl .s1,
+html.dark-mode .syntaxhl .s2,
+html.dark-mode .syntaxhl .si,
+html.dark-mode .syntaxhl .s,
+html.dark-mode .syntaxhl .sb,
+html.dark-mode .syntaxhl .sc,
+html.dark-mode .syntaxhl .sd,
+html.dark-mode .syntaxhl .se,
+html.dark-mode .syntaxhl .sh,
+html.dark-mode .syntaxhl .sx {
+  background-color: transparent !important;
+  color: #ce9178 !important;
+}
+
+/* String interpolation */
+html.dark-mode .syntaxhl .si {
+  background-color: transparent !important;
+  color: #f4c790 !important;
+}
+
+/* Comments */
+html.dark-mode .syntaxhl .c,
+html.dark-mode .syntaxhl .c1,
+html.dark-mode .syntaxhl .cm,
+html.dark-mode .syntaxhl .cp,
+html.dark-mode .syntaxhl .cs {
+  color: #6a9955 !important;
+}
+
+/* Keywords */
+html.dark-mode .syntaxhl .k,
+html.dark-mode .syntaxhl .kc,
+html.dark-mode .syntaxhl .kd,
+html.dark-mode .syntaxhl .kn,
+html.dark-mode .syntaxhl .kp,
+html.dark-mode .syntaxhl .kr,
+html.dark-mode .syntaxhl .kt {
+  color: #569cd6 !important;
+}
+
+/* Class names */
+html.dark-mode .syntaxhl .nc {
+  color: #4ec9b0 !important;
+}
+
+/* Function/method names */
+html.dark-mode .syntaxhl .nf,
+html.dark-mode .syntaxhl .fm {
+  color: #dcdcaa !important;
+}
+
+/* Built-ins / variables */
+html.dark-mode .syntaxhl .nb,
+html.dark-mode .syntaxhl .bp {
+  color: #9cdcfe !important;
+}
+
+/* Instance/class variables */
+html.dark-mode .syntaxhl .vi,
+html.dark-mode .syntaxhl .vc,
+html.dark-mode .syntaxhl .vg,
+html.dark-mode .syntaxhl .v {
+  color: #9cdcfe !important;
+}
+
+/* Operators & punctuation */
+html.dark-mode .syntaxhl .o,
+html.dark-mode .syntaxhl .p {
+  color: #d4d4d4 !important;
+}
+
+/* Numbers */
+html.dark-mode .syntaxhl .mi,
+html.dark-mode .syntaxhl .mf,
+html.dark-mode .syntaxhl .mh,
+html.dark-mode .syntaxhl .m {
+  color: #b5cea8 !important;
+}
+
+/* Namespace / constants */
+html.dark-mode .syntaxhl .nn,
+html.dark-mode .syntaxhl .no {
+  color: #4fc1ff !important;
+}
+
+/* Tags (HTML/XML) */
+html.dark-mode .syntaxhl .nt {
+  color: #569cd6 !important;
+}
+
+/* Attribute names */
+html.dark-mode .syntaxhl .na {
+  color: #9cdcfe !important;
+}
+
+/* Error tokens */
+html.dark-mode .syntaxhl .err {
+  color: var(--dm-error) !important;
+  background-color: transparent !important;
 }
 
 /* Diff view */
@@ -977,7 +1242,8 @@ html.dark-mode th {
 }
 
 /* ============================================
-   TEXT EDITOR TOOLBAR (jstoolbar) - FIXED
+   TEXT EDITOR TOOLBAR (jstoolbar)
+   SVGs use stroke="currentColor" so just set `color` on buttons
    ============================================ */
 html.dark-mode .jstEditor {
   background-color: var(--dm-bg-secondary) !important;
@@ -985,80 +1251,72 @@ html.dark-mode .jstEditor {
 }
 
 html.dark-mode .jstElements {
-  background-color: var(--dm-bg-tertiary) !important;
+  background-color: var(--dm-bg-secondary) !important;
   border-bottom: 1px solid var(--dm-border) !important;
-  padding: 4px !important;
 }
 
-/* Toolbar buttons base style */
+/* Toolbar buttons — dark background, light border */
 html.dark-mode .jstElements button {
   background-color: var(--dm-bg-hover) !important;
-  border: 1px solid var(--dm-border) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  border-color: var(--dm-border) !important;
   border-radius: 3px !important;
+  color: var(--dm-text-primary) !important;
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 html.dark-mode .jstElements button:hover {
-  background-color: var(--dm-accent) !important;
+  background-color: #3d3d62 !important;
   border-color: var(--dm-accent) !important;
+  filter: none !important;
+  opacity: 1 !important;
 }
 
-/* Toolbar icons - exact Redmine icons with white stroke */
-html.dark-mode .jstb_strong {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 5h6a3.5 3.5 0 0 1 0 7h-6z'/%3E%3Cpath d='M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_em {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5l6 0'/%3E%3Cpath d='M7 19l6 0'/%3E%3Cpath d='M14 5l-4 14'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_ins {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 5v5a5 5 0 0 0 10 0v-5'/%3E%3Cpath d='M5 19h14'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_del {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l14 0'/%3E%3Cpath d='M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_code {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 9a5 5 0 0 0 -5 -5h-2a5 5 0 0 0 -5 5v6a5 5 0 0 0 5 5h2a5 5 0 0 0 5 -5'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_h1 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 18v-8l-2 2'/%3E%3Cpath d='M4 6v12'/%3E%3Cpath d='M12 6v12'/%3E%3Cpath d='M11 18h2'/%3E%3Cpath d='M3 18h2'/%3E%3Cpath d='M4 12h8'/%3E%3Cpath d='M3 6h2'/%3E%3Cpath d='M11 6h2'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_h2 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 12a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0'/%3E%3Cpath d='M4 6v12'/%3E%3Cpath d='M12 6v12'/%3E%3Cpath d='M11 18h2'/%3E%3Cpath d='M3 18h2'/%3E%3Cpath d='M4 12h8'/%3E%3Cpath d='M3 6h2'/%3E%3Cpath d='M11 6h2'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_h3 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 14a2 2 0 1 0 -2 -2'/%3E%3Cpath d='M17 16a2 2 0 1 0 2 -2'/%3E%3Cpath d='M4 6v12'/%3E%3Cpath d='M12 6v12'/%3E%3Cpath d='M11 18h2'/%3E%3Cpath d='M3 18h2'/%3E%3Cpath d='M4 12h8'/%3E%3Cpath d='M3 6h2'/%3E%3Cpath d='M11 6h2'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_ul {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l11 0'/%3E%3Cpath d='M9 12l11 0'/%3E%3Cpath d='M9 18l11 0'/%3E%3Cpath d='M5 6l0 .01'/%3E%3Cpath d='M5 12l0 .01'/%3E%3Cpath d='M5 18l0 .01'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_ol {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 6h9'/%3E%3Cpath d='M11 12h9'/%3E%3Cpath d='M12 18h8'/%3E%3Cpath d='M4 16a2 2 0 1 1 4 0c0 .591 -.5 1 -1 1.5l-3 2.5h4'/%3E%3Cpath d='M6 10v-6l-2 2'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_bq {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6l-11 0'/%3E%3Cpath d='M20 12l-7 0'/%3E%3Cpath d='M20 18l-11 0'/%3E%3Cpath d='M4 8l4 4l-4 4'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_unbq {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6l-7 0'/%3E%3Cpath d='M20 12l-9 0'/%3E%3Cpath d='M20 18l-7 0'/%3E%3Cpath d='M8 8l-4 4l4 4'/%3E%3C/svg%3E") !important;
-}
+/* Keep light SVG icons visible on hover for each button */
+html.dark-mode .jstb_strong:hover    { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_bold.svg) !important; }
+html.dark-mode .jstb_em:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_italic.svg) !important; }
+html.dark-mode .jstb_ins:hover       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_underline.svg) !important; }
+html.dark-mode .jstb_del:hover       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_strikethrough.svg) !important; }
+html.dark-mode .jstb_code:hover      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_letter-c.svg) !important; }
+html.dark-mode .jstb_h1:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h1.svg) !important; }
+html.dark-mode .jstb_h2:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h2.svg) !important; }
+html.dark-mode .jstb_h3:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h3.svg) !important; }
+html.dark-mode .jstb_ul:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list.svg) !important; }
+html.dark-mode .jstb_ol:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list-numbers.svg) !important; }
+html.dark-mode .jstb_bq:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_indent-increase.svg) !important; }
+html.dark-mode .jstb_unbq:hover      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_indent-decrease.svg) !important; }
+html.dark-mode .jstb_precode:hover   { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_code.svg) !important; }
+html.dark-mode .jstb_link:hover      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_wiki_link.svg) !important; }
+html.dark-mode .jstb_img:hover       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_image.svg) !important; }
+html.dark-mode .jstb_table:hover     { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_table.svg) !important; }
+html.dark-mode .jstb_help:hover      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_help.svg) !important; }
+html.dark-mode .jstb_tl:hover        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list-check.svg) !important; }
+
+/* Override each button's background-image with light-stroke version */
+html.dark-mode .jstb_strong    { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_bold.svg) !important; }
+html.dark-mode .jstb_em        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_italic.svg) !important; }
+html.dark-mode .jstb_ins       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_underline.svg) !important; }
+html.dark-mode .jstb_del       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_strikethrough.svg) !important; }
+html.dark-mode .jstb_code      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_letter-c.svg) !important; }
+html.dark-mode .jstb_h1        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h1.svg) !important; }
+html.dark-mode .jstb_h2        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h2.svg) !important; }
+html.dark-mode .jstb_h3        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_h3.svg) !important; }
+html.dark-mode .jstb_ul        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list.svg) !important; }
+html.dark-mode .jstb_ol        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list-numbers.svg) !important; }
+html.dark-mode .jstb_bq        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_indent-increase.svg) !important; }
+html.dark-mode .jstb_unbq      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_indent-decrease.svg) !important; }
+html.dark-mode .jstb_precode   { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_code.svg) !important; }
+html.dark-mode .jstb_link      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_wiki_link.svg) !important; }
+html.dark-mode .jstb_img       { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_image.svg) !important; }
+html.dark-mode .jstb_table     { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_table.svg) !important; }
+html.dark-mode .jstb_help      { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_help.svg) !important; }
+html.dark-mode .jstb_tl        { background-image: url(/plugin_assets/redmine_dark_mode/images/jstoolbar/dm_list-check.svg) !important; }
+
+/* "pre" text label */
 html.dark-mode .jstb_pre::before {
-  color: #e4e4e7 !important;
-}
-html.dark-mode .jstb_precode {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 8l-4 4l4 4'/%3E%3Cpath d='M17 8l4 4l-4 4'/%3E%3Cpath d='M14 4l-4 16'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_link {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15.536 17.586a2.123 2.123 0 0 0 -2.929 0a1.951 1.951 0 0 0 0 2.828c.809 .781 2.12 .781 2.929 0c.809 -.781 -.805 .778 0 0l1.46 -1.41l1.46 -1.419'/%3E%3Cpath d='M15.54 17.582l1.46 1.42l1.46 1.41c.809 .78 -.805 -.779 0 0s2.12 .781 2.929 0a1.951 1.951 0 0 0 0 -2.828a2.123 2.123 0 0 0 -2.929 0'/%3E%3Cpath d='M14 3v4a1 1 0 0 0 1 1h4'/%3E%3Cpath d='M9.5 21h-2.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v6'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_img {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 8h.01'/%3E%3Cpath d='M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z'/%3E%3Cpath d='M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5'/%3E%3Cpath d='M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_table {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M10 3v18'/%3E%3Cpath d='M16 19h6'/%3E%3Cpath d='M19 16v6'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_help {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'/%3E%3Cpath d='M12 17l0 .01'/%3E%3Cpath d='M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4'/%3E%3C/svg%3E") !important;
-}
-html.dark-mode .jstb_tl {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e4e4e7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 5h8'/%3E%3Cpath d='M13 9h5'/%3E%3Cpath d='M13 15h8'/%3E%3Cpath d='M13 19h5'/%3E%3Cpath d='M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z'/%3E%3Cpath d='M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z'/%3E%3C/svg%3E") !important;
+  color: var(--dm-text-primary) !important;
 }
 
 /* Tabs in editor (Edit/Preview) */
@@ -1087,8 +1345,10 @@ html.dark-mode ul.tabs li a.selected {
 }
 
 /* ============================================
-   CALENDAR - FIXED
+   CALENDAR - FIXED (Redmine 6 uses .calbody/.calhead structure)
    ============================================ */
+
+/* Legacy table.cal support */
 html.dark-mode table.cal {
   border: 1px solid var(--dm-border) !important;
   background-color: var(--dm-bg-primary) !important;
@@ -1120,23 +1380,19 @@ html.dark-mode table.cal tbody td.nwday {
   background-color: var(--dm-bg-card) !important;
 }
 
-/* Calendar day numbers */
 html.dark-mode table.cal td p.day-num {
   color: var(--dm-text-primary) !important;
-  font-weight: bold !important;
 }
 
 html.dark-mode table.cal td.odd p.day-num {
   color: var(--dm-text-secondary) !important;
 }
 
-/* Calendar week numbers */
 html.dark-mode table.cal td.week-number {
   background-color: var(--dm-bg-secondary) !important;
   color: var(--dm-text-muted) !important;
 }
 
-/* Calendar issue links */
 html.dark-mode table.cal a.issue {
   color: var(--dm-link) !important;
 }
@@ -1145,14 +1401,72 @@ html.dark-mode table.cal span.icon {
   color: var(--dm-text-primary) !important;
 }
 
-/* Calendar navigation */
-html.dark-mode .calendar-nav {
+html.dark-mode table.cal.mini th,
+html.dark-mode table.cal.mini td {
   color: var(--dm-text-primary) !important;
 }
 
-/* Small calendar / datepicker in sidebar */
-html.dark-mode table.cal.mini th,
-html.dark-mode table.cal.mini td {
+/* Redmine 6 calendar: ul.cal with .calhead / .calbody structure */
+html.dark-mode ul.cal {
+  background-color: var(--dm-bg-primary) !important;
+}
+
+html.dark-mode .cal .calhead {
+  background-color: var(--dm-table-header) !important;
+  color: var(--dm-text-primary) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .cal .week-number {
+  background-color: var(--dm-bg-secondary) !important;
+  color: var(--dm-text-muted) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .cal .calbody {
+  background-color: var(--dm-bg-primary) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .cal .calbody.this-month {
+  background-color: var(--dm-bg-primary) !important;
+}
+
+html.dark-mode .cal .calbody.other-month {
+  background-color: var(--dm-bg-secondary) !important;
+}
+
+html.dark-mode .cal .calbody.other-month p.day-num {
+  color: var(--dm-text-muted) !important;
+}
+
+html.dark-mode .cal .calbody.today {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+}
+
+html.dark-mode .cal .calbody.today p.day-num {
+  color: var(--dm-warning) !important;
+}
+
+html.dark-mode .cal .calbody.nwday:not(.other-month) {
+  background-color: var(--dm-bg-card) !important;
+}
+
+html.dark-mode .cal .calbody p.day-num {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .cal .calbody a {
+  color: var(--dm-link) !important;
+}
+
+html.dark-mode .cal .calbody a:hover {
+  color: var(--dm-link-hover) !important;
+}
+
+/* Calendar navigation */
+html.dark-mode .calendar-nav {
   color: var(--dm-text-primary) !important;
 }
 
@@ -1202,5 +1516,145 @@ html.dark-mode .attachments_form {
 }
 
 html.dark-mode span.add_attachment {
+  color: var(--dm-text-primary) !important;
+}
+
+/* ============================================
+   EMAIL MODAL (issue_emailer_redmine plugin)
+   ============================================ */
+
+html.dark-mode .email-modal {
+  background: var(--dm-bg-card) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-modal-body {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-modal-footer {
+  background: var(--dm-bg-secondary) !important;
+  border-top-color: var(--dm-border) !important;
+}
+
+/* Form labels */
+html.dark-mode .email-form-group > label {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Input and select fields */
+html.dark-mode .email-input,
+html.dark-mode .email-select {
+  background: var(--dm-bg-input, #1e1e2e) !important;
+  color: var(--dm-text-primary) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .email-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e4e4e7' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+}
+
+html.dark-mode .email-input::placeholder {
+  color: var(--dm-text-muted) !important;
+}
+
+/* Info card */
+html.dark-mode .email-info-card {
+  background: var(--dm-bg-secondary) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .email-info-card .info-details h4 {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-info-card .info-meta {
+  color: var(--dm-text-muted) !important;
+}
+
+/* Preview box */
+html.dark-mode .email-preview {
+  background: var(--dm-bg-secondary) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .email-preview-header {
+  background: var(--dm-bg-hover) !important;
+  border-bottom-color: var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-preview-content {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-preview-content table td {
+  border-bottom-color: var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-preview-content table td:first-child {
+  color: var(--dm-text-muted) !important;
+}
+
+html.dark-mode .email-preview-section {
+  border-top-color: var(--dm-border) !important;
+}
+
+html.dark-mode .email-preview-section h4 {
+  color: var(--dm-text-primary) !important;
+}
+
+/* Cancel button */
+html.dark-mode .btn-secondary {
+  background: var(--dm-bg-secondary) !important;
+  border-color: var(--dm-border) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .btn-secondary:hover {
+  background: var(--dm-bg-hover) !important;
+  color: var(--dm-text-primary) !important;
+}
+
+/* Sending overlay */
+html.dark-mode .email-sending-overlay {
+  background: rgba(18, 18, 40, 0.92) !important;
+}
+
+html.dark-mode .email-sending-label {
+  color: var(--dm-text-primary) !important;
+}
+
+html.dark-mode .email-sending-sub {
+  color: var(--dm-text-muted) !important;
+}
+
+html.dark-mode .email-progress-track {
+  background: var(--dm-border) !important;
+}
+
+/* Toast (lives outside modal, still needs dark override) */
+html.dark-mode .email-toast-success {
+  background: #1a2e22 !important;
+  border-color: #276749 !important;
+  color: #9ae6b4 !important;
+}
+
+html.dark-mode .email-toast-error {
+  background: #2d1515 !important;
+  border-color: #c53030 !important;
+  color: #feb2b2 !important;
+}
+
+/* Attachment options */
+html.dark-mode .email-attachment-options {
+  background: var(--dm-bg-secondary) !important;
+  border-color: var(--dm-border) !important;
+}
+
+html.dark-mode .email-attachment-options .email-checkbox {
   color: var(--dm-text-primary) !important;
 }
